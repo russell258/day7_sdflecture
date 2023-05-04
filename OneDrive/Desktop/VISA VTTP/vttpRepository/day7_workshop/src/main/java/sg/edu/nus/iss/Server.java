@@ -5,6 +5,13 @@ import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+
+// 1. Client first sends the file name and file size  to server
+// 2. then it sends the file
+// 3. Server will check the size with what it has received (No. of bytes received vs file size)
+// 4. Send back "OK"/"Error" to client
+// 5. close
+
 public class Server 
 {
     public static void main( String[] args )throws Exception{
