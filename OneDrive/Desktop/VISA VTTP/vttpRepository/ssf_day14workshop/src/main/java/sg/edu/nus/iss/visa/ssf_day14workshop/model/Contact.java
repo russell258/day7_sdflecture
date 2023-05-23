@@ -1,6 +1,8 @@
 package sg.edu.nus.iss.visa.ssf_day14workshop.model;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.util.Random;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -35,7 +37,9 @@ public class Contact {
 
     private String id;
 
+    // need to generate the uuid
     public Contact() {
+        this.id = generateId();
     }
 
     public Contact(@NotNull(message = "Name cannot be empty") String name,
@@ -50,6 +54,15 @@ public class Contact {
         this.dob = dob;
         this.age = age;
         this.id = id;
+    }
+
+    private String generateId(){
+        Random r = new Random();
+        StringBuilder sb = new StringBuilder();
+        while (sb.length()<8){
+            sb.append(Integer.toHexString(r.nextInt()));
+        }
+        return sb.toString().substring(0, 8);
     }
 
     public String getName() {
@@ -81,6 +94,12 @@ public class Contact {
     }
 
     public void setDob(LocalDate dob) {
+        //calculate age
+        int calculateAge=0;
+        if (dob!=null){
+            calculateAge=Period.between(dob,LocalDate.now()).getYears();
+        }
+        this.age = calculateAge;
         this.dob = dob;
     }
 
@@ -100,6 +119,10 @@ public class Contact {
         this.id = id;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Contact [name=" + name + ", email=" + email + ", phoneNumber=" + phoneNumber + ", dob=" + dob + ", age="
+                + age + ", id=" + id + "]";
+    }
 
 }
