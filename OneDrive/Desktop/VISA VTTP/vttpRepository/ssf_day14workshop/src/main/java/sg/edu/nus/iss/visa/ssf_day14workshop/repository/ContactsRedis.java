@@ -31,13 +31,8 @@ public class ContactsRedis {
         return contact;
     }
 
-    public List<Contact> getAllContacts(){
-        return template.opsForHash()
-                        .values(CONTACT_LIST+"_HASH")
-                        .stream()
-                        .filter(Contact.class::isInstance)
-                        .map(Contact.class::cast)
-                        .collect(Collectors.toList());
+    public List<Contact> getAllContacts(Model model){
+        return template.opsForHash().values(CONTACT_LIST+"_HASH").stream().filter(Contact.class :: isInstance).map(Contact.class :: cast).collect(Collectors.toList());
     }
 
 
