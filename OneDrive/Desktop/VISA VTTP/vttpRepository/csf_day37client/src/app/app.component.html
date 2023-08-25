@@ -1,5 +1,17 @@
 <h1>Upload</h1>
 
-<form [formGroup]="uploadForm">
+<form [formGroup]="uploadForm" (ngSubmit)="processForm()">
+  <div>
+    Description: <input type="text" name ="" formControlName="description">
+  </div>
 
+  <div>
+    File: <input type="file" accept="image/*" #toUpload>
+  </div>
+
+  <div>
+    <button type="submit">Submit</button>
+  </div>
 </form>
+
+<router-outlet></router-outlet>

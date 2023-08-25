@@ -20,7 +20,7 @@ export class UploadService {
     data.set("myfile",elemRef.nativeElement.files[0])
 
     return firstValueFrom(
-      this.http.post<any>('/upload',data)
+      this.http.post<any>('upload',data)
     )
 
   }
